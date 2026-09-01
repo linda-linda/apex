@@ -1,0 +1,45 @@
+请生成一整套CSV导入向导完整React+TypeScript+Tailwind代码，包含5个tsx文件：StepIndicator、Step1DataLoadSource、Step2DataTableMapping、Step3DataValidation、Step4DataLoadResults、BusinessChannelDataLoadWizard主外壳。
+
+### StepIndicator（公共步骤组件）
+4步：
+1. Business Channel‑Data Load Source
+2. Business Channel‑Data / Table Mapping
+3. Business Channel‑Data Validation
+4. Business Channel‑Data Load Results
+状态：已完成显示绿色对勾；当前步骤蓝色圆点；未完成灰色圆点。
+
+### Step1DataLoadSource（步骤1）
+表单：文件选择(csv)、分隔符、可选包围符、首行作为列名复选框、应用系统日期格式复选框、文件字符集下拉；
+Globalization板块：货币符号、组分隔符、小数位符号；
+按钮：Cancel、Next；Next未选文件时禁用。
+
+### Step2DataTableMapping（步骤2）
+提示文字：Screen Displays Column Mapping for Reference, Full Row Count from Source File is Under "Data Validation"
+按钮：Cancel、Previous、Next；
+表格三层：Target Column(带数据库字段类型)、Source Column、Row1/Row2预览样例数据。
+
+### Step3DataValidation（步骤3）
+标题：Business Channel Data Validation
+按钮：Cancel、Previous、Load Data；有错误行时Load Data禁用；
+表格列：Sequence,Action,ID_BUSINESS_CHANNEL,PL_REPORTING_LINE,COUNTERPARTY,BUSINESS_CHANNEL,DERIVED_CHANNEL；
+mock两条INSERT数据；右下角分页文本1‑2；预留错误行红色高亮样式。
+
+### Step4DataLoadResults（步骤4）
+标题：Business Channel Data Load Results
+按钮：Cancel、Finish；
+统计：
+Inserted Row(s): 2
+Updated Row(s): 0
+Failed Row(s): 0
+To be Reviewed Row(s): 0
+
+### 主组件 BusinessChannelDataLoadWizard
+useState维护currentStep(1‑4)，全局state保存表单、映射、校验数据、结果统计。
+流转逻辑：
+Step1 Next → Step2
+Step2 Previous→Step1；Next→Step3
+Step3 Previous→Step2；Load Data→Step4
+Step4 Finish 重置回到Step1
+任意步骤点Cancel，全部重置回到Step1。
+
+全部仅前端mock，不要真实后端请求；企业后台UI风格；输出完整可直接使用的TSX代码。
